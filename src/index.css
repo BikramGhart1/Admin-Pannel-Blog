@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* @import "@fortawesome/fontawesome-free/css/all.css"; */
+
+.sidebarNav{
+  @apply flex justify-start gap-x-8 items-start bg-gray-200 w-11/12 m-auto mt-2 mb-2 p-2 cursor-pointer hover:bg-gray-300
+}
+
+.sidebarNavButton{
+    @apply text-sm items-start 
+}
+
+.sidebarNavIcon{
+    @apply w-full
+}
+
+.sidebarNavIcon{
+    @apply w-8
+}
