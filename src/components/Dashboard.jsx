@@ -1,10 +1,10 @@
 import React from 'react'
 import Post from './Post'
 
-export default function Dashboard({ searchText }) {
+export default function Dashboard() {
 
   return (
-    <main className='bg-gray-100 flex-1 overflow-y-auto pb-96 p-10'>
+    <main className='bg-gray-0 flex-1 overflow-y-auto pb-96 p-10'>
       <div>
         <select name="postCategory" id="postCategory" className='text-gray-800 rounded-lg outline-none p-1 border-none'>
           <option value="all">All</option>
