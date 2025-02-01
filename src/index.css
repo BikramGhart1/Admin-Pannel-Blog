@@ -4,18 +4,27 @@
 
 /* @import "@fortawesome/fontawesome-free/css/all.css"; */
 
-.sidebarNav{
-  @apply flex justify-start gap-x-8 items-start bg-gray-200 w-11/12 m-auto mt-2 mb-2 p-2 cursor-pointer hover:bg-gray-300 active:text-blue-800
+.sidebarNav {
+    @apply flex justify-start gap-x-8 items-start bg-gray-200 w-11/12 m-auto mt-2 mb-2 p-2 cursor-pointer hover:bg-gray-300 active:text-blue-800
 }
 
-.sidebarNavButton{
-    @apply text-sm items-start 
+.sidebarNavButton {
+    @apply text-sm items-start
 }
 
-.sidebarNavIcon{
+.sidebarNavIcon {
     @apply w-full
 }
 
-.sidebarNavIcon{
+.sidebarNavIcon {
     @apply w-8
 }
+
+.postBadge {
+    @apply rounded-full p-2 hover:bg-gray-300 opacity-85
+}
+
+.createPostButtons{
+    @apply rounded-lg p-2 text-white cursor-pointer active:bg-fuchsia-800 hover:opacity-90
+}
+/* absolute bottom-2 right-2 */
