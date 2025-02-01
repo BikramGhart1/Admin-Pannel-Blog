@@ -42,7 +42,7 @@ const CreatePost = React.memo(({ getPosts }) => {
         <form className="flex-1 p-10" onSubmit={submithandler} >
             <div>
                 <div>
-                    <input type="text" name="title" onChange={onChangehandle} value={inputValue.title} id="title" placeholder="Title" className="w-full border-b border-fuchsia-400 p-1 mb-4 outline-none" />
+                    <input type="text" name="title" onChange={onChangehandle} value={inputValue.title} id="title" placeholder="Title" autoFocus className="w-full border-b border-fuchsia-400 p-1 mb-4 outline-none" />
                 </div>
                 <div className="mb-4 flex justify-start gap-x-8">
                     <input type="submit" value="Publish" className="bg-fuchsia-700 createPostButtons" />
