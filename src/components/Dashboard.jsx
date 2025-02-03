@@ -1,20 +1,10 @@
 import React, { useState } from 'react'
 import Post from './Post'
+import { useSelector } from 'react-redux'
 
-export default function Dashboard({posts}) {
-  // const [posts,setPosts]=useState([
-  //   {
-  //     id:1,
-  //     title:"How to generate electicity",
-  //     content:"lorem",
-  //   },
-  //   {
-  //     id:2,
-  //     title:"Blood Meridian",
-  //     content:"Not availabe",
-  //   }
-  // ]);
 
+export default function Dashboard() {
+  const posts=useSelector((state)=>state.posts.posts);
   return (
     <main className='bg-gray-0 flex-1 overflow-y-auto pb-96 p-10'>
       <div>

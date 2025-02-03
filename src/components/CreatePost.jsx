@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
+import { useDispatch } from "react-redux";
+import { addPost,updatePost } from "../slices/postSlice";
 
-const CreatePost = React.memo(({ getPosts }) => {
+const CreatePost = React.memo(() => {
     const location = useLocation();
+    const dispatch=useDispatch();
     const navigate = useNavigate();
 
     const [inputValue, setInputValue] = useState({
@@ -34,7 +37,11 @@ const CreatePost = React.memo(({ getPosts }) => {
             blogContent:inputValue.blogContent,
             date: inputValue.date||new Date().toISOString(),
         }
-        getPosts(post);
+        if(inputValue.id){
+            dispatch(updatePost(post));
+        }else{
+            dispatch(addPost(post));
+        }
 
         navigate("/");
     }
