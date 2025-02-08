@@ -6,6 +6,7 @@ import Sidebar from './components/Sidebar';
 import { Route, Routes } from 'react-router-dom';
 import Comments from './components/Comments';
 import CreatePost from './components/CreatePost';
+import Preview from './components/Preview';
 
 
 function App() {

@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 import Post from './Post'
 import { useSelector } from 'react-redux'
+import Preview from './Preview';
 
 
 export default function Dashboard() {
-  const posts=useSelector((state)=>state.posts.posts);
+  const posts = useSelector((state) => state.posts.posts);
   return (
     <main className='bg-gray-0 flex-1 overflow-y-auto pb-96 p-10'>
       <div>
@@ -16,10 +17,10 @@ export default function Dashboard() {
       </div>
       <div className='flex flex-col mt-4'>
         {
-          posts.length>0 && 
-            posts.map((post,index)=>{
-             return <Post key={post.id||index} post={post}/>
-            }) 
+          posts.length > 0 &&
+          posts.map((post, index) => {
+            return <Post key={post.id || index} post={post} />
+          })
         }
       </div>
     </main>

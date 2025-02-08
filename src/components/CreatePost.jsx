@@ -53,7 +53,6 @@ const CreatePost = React.memo(() => {
                 </div>
                 <div className="mb-4 flex justify-start gap-x-8">
                     <input type="submit" value="Publish" className="bg-fuchsia-700 createPostButtons" />
-                    <input type="button" value='Preview' className="bg-gray-500  createPostButtons active:bg-gray-400 active:text-gray-700 hover:opacity-70" />
                 </div>
             </div>
             <div>

@@ -16,10 +16,6 @@ export default function Sidebar() {
                 <i className="fa fa-comments sidebarNavIcon" aria-hidden="true"></i>
                 <button className='sidebarNavButton'>COMMENTS</button>
             </Link>
-            <div className='sidebarNav'>
-                <i className="fa fa-eye sidebarNavIcon" aria-hidden="true"></i>
-                <button className='sidebarNavButton'>PREVIEW</button>
-            </div>
         </aside>
     )
 }

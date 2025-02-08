@@ -35,7 +35,7 @@ const Post = React.memo(({ post }) => {
                     <div className='' onClick={deleteHandler}>
                         <i className="fa fa-trash  postBadge " aria-hidden="true"></i>
                     </div>
-                    <div className=''>
+                    <div className='' onClick={()=>{window.open(`/preview/${post.id}`,"_blank")}}>
                         <i className="fa fa-eye postBadge" aria-hidden="true"></i>
                     </div>
                     <Link to="/create" state={{ post }}>
