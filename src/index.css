@@ -5,19 +5,15 @@
 /* @import "@fortawesome/fontawesome-free/css/all.css"; */
 
 .sidebarNav {
-    @apply flex justify-start gap-x-8 items-start bg-gray-200 w-11/12 m-auto mt-2 mb-2 p-2 cursor-pointer hover:bg-gray-300 active:text-blue-800
+    @apply flex justify-center md:justify-start gap-x-8 items-center md:items-start bg-gray-200 w-11/12 m-auto mt-2 mb-2 p-2 cursor-pointer hover:bg-gray-300 active:text-fuchsia-600
 }
 
 .sidebarNavButton {
-    @apply text-sm items-start
+    @apply text-sm items-center hidden md:items-start md:block
 }
 
 .sidebarNavIcon {
-    @apply w-full
-}
-
-.sidebarNavIcon {
-    @apply w-8
+    @apply w-fit md:w-4
 }
 
 .postBadge {
@@ -30,7 +26,4 @@
 /* absolute bottom-2 right-2 */
 .text-fuchsia-gradient{
     @apply bg-gradient-to-r from-fuchsia-400 to-fuchsia-900 bg-clip-text text-transparent font-bold
-}
-.text-red-gradient{
-    @apply bg-gradient-to-r from-red-400 to-red-700 bg-clip-text text-transparent
 }

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { addComment } from '../slices/postSlice';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -11,28 +11,34 @@ const Preview = React.memo(() => {
   const [post, setPost] = useState({
     title: '',
     blogContent: '',
+    comments: [],
   });
   useEffect(() => {
     const storedPosts = JSON.parse(localStorage.getItem("posts")) || [];
-
-    console.log(storedPosts);
     const foundPost = storedPosts.find((p) => p.id === id);
     setPost(foundPost);
 
   }, [id])
+
   if (post && post.title) {
     document.title = `Preview - ${post.title}`;
   } else {
     document.title = `Post not found - BlogJournal`;
   }
+
   if (!post) {
-    return <h2>Post not found</h2>
+    return <div className='text-center pt-60'>
+      <Link to='/' className='pb-5 cursor-pointer'>BLOG<em className='not-italic text-fuchsia-gradient'>JOURNAL</em></Link>
+      <h2 className=' font-semibold text-lg'>Post not found, Hehee..</h2>
+    </div>
   }
+
   const commentOnChangeHandle = (e) => {
     e.preventDefault();
     const { value } = e.target;
     setComment(value);
   }
+
   const submitComment = (e) => {
     e.preventDefault();
     dispatch(addComment({ id: post.id, commentId: uuidv4(), commentContent: comment }));
@@ -43,7 +49,7 @@ const Preview = React.memo(() => {
   return (
     <div className='mr-2 ml-2 p-5 border-l-2 border-fuchsia-600 min-h-svh'>
       <div className=''>
-        <h2 className=''>BLOG<em className='not-italic text-fuchsia-gradient'>JOURNAL</em></h2>
+        <Link to='/' className=''>BLOG<em className='not-italic text-fuchsia-gradient'>JOURNAL</em></Link>
         <h2 className='text-center p-4 mb-3 font-semibold border-b bg-neutral-300 text-fuchsia-600 text-xl'>{post.title}</h2>
 
         <div className='border-b border-r border-l rounded-lg border-gray-400 p-5 pb-6'>
@@ -89,15 +95,15 @@ const Preview = React.memo(() => {
           </div>
           {
             post.comments.length > 0 &&
-            post.comments.map((comment) => {
-              return <div className='flex flex-row justify-start gap-x-8 pt-10'>
+            post.comments.map((comment, index) => {
+              return <div key={comment.commentId || index} className='flex flex-row justify-start gap-x-8 pt-10'>
                 <div className='min-w-20 flex-shrink-0'>
                   <img src="https://c.disquscdn.com/uploads/users/35966/8923/avatar92.jpg?1723087776" className='rounded-full' alt="" />
                 </div>
                 <div className='flex flex-col'>
                   <p className='font-semibold'>Guest</p>
                   <p className='text-sm'>a year ago</p>
-                  <p className='pt-2'>{comment}</p>
+                  <p className='pt-2'>{comment.content}</p>
                 </div>
               </div>
             })

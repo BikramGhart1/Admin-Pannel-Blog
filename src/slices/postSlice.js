@@ -28,10 +28,10 @@ const postSlice = createSlice({
             saveToLocalStorage(state.posts);
         },
         addComment: (state, action) => {
-            const { id, commentContent } = action.payload;
+            const { id, commentContent, commentId } = action.payload;
             const post = state.posts.find(post => post.id === id);
             if (post) {
-                post.comments.push(commentContent);
+                post.comments.push({commentId:commentId,content:commentContent});
             }
             saveToLocalStorage(state.posts);
         },

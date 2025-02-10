@@ -22,10 +22,14 @@ export default function Dashboard() {
       </div>
       <div className='flex flex-col mt-4'>
         {
-          posts.length > 0 &&
-          posts.map((post, index) => {
+          posts.length > 0 ?
+          (posts.map((post, index) => {
             return <Post key={post.id || index} post={post} />
-          })
+          })):
+          (
+            <p className='m-auto pt-40  text-lg'>No posts available.
+            </p>
+          )
         }
       </div>
     </main>

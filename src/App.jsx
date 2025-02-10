@@ -17,7 +17,7 @@ function App() {
   }
   return (
     <>
-      <Navbar getSearchText={getSearchText} />
+      <Navbar getSearchText={getSearchText}  />
       <div className='flex flex-row'>
         <Sidebar />
         <Routes>

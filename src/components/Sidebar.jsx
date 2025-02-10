@@ -1,9 +1,8 @@
-import React from 'react'
 import { Link } from 'react-router-dom'
 
-export default function Sidebar() {
+export default function Sidebar({}) {
     return (
-        <aside className='w-1/5 bg-gray-0 border-r border-solid border-gray-300 z-10 h-[calc(100vh-4rem)] pt-6 sticky top-16 max-md:hidden flex flex-col  overflow-hidden'>
+        <aside className={`w-2/12 md:w-1/5 bg-gray-0 border-r border-solid border-gray-300 z-10 h-[calc(100vh-4rem)] pt-6 sticky top-16 flex flex-col  overflow-hidden `}>
             <Link to="/" className='sidebarNav'>
                 <i className="fa fa-home sidebarNavIcon" aria-hidden="true"></i>
                 <button className='sidebarNavButton'>HOME</button>

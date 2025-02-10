@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 
 export default function Navbar({ getSearchText }) {
     const [searchText, setSearchText] = useState('');
+
     const handleSearchInput = (e) => {
         setSearchText(e.target.value);
         getSearchText(searchText);
@@ -11,9 +12,7 @@ export default function Navbar({ getSearchText }) {
     }
     return (
         <nav className='bg-white flex justify-between pr-6 pl-6 pt-3 pb-3 border-b border-gray-300 items-center sticky top-0 z-20'>
-            <div>
-                <h2>BLOG<em className='not-italic text-fuchsia-gradient'>JOURNAL</em></h2>
-            </div>
+            <h2>BLOG<em className='not-italic text-fuchsia-gradient'>JOURNAL</em></h2>
             <div className='bg-gray-400 pr-0 w-2/5 flex justify-between rounded-lg'>
                 <div className='overflow-hidden bg-transparent w-full outline-none rounded-lg rounded-br-none rounded-tr-none flex justify-normal'>
                     <input className='p-1 pl-4 overflow-hidden bg-gray-200 w-full outline-none rounded-lg rounded-br-none rounded-tr-none focus:bg-gray-300 placeholder-gray-700' type="text" name="search" id="search" placeholder='Search posts but search bar currently not implemented' onChange={handleSearchInput} value={searchText} />{
