@@ -21,10 +21,16 @@
 }
 
 .postBadge {
-    @apply rounded-full p-2 hover:bg-gray-300 opacity-85
+    @apply rounded-full p-2 hover:bg-gray-300 cursor-pointer hover:scale-105
 }
 
 .createPostButtons{
-    @apply rounded-lg p-2 text-white cursor-pointer active:bg-fuchsia-800 hover:opacity-90
+    @apply rounded-lg p-2 text-white cursor-pointer active:bg-fuchsia-800 hover:opacity-90 bg-gradient-to-r from-fuchsia-400 to-fuchsia-900
 }
 /* absolute bottom-2 right-2 */
+.text-fuchsia-gradient{
+    @apply bg-gradient-to-r from-fuchsia-400 to-fuchsia-900 bg-clip-text text-transparent font-bold
+}
+.text-red-gradient{
+    @apply bg-gradient-to-r from-red-400 to-red-700 bg-clip-text text-transparent
+}

@@ -12,7 +12,7 @@ export default function Navbar({ getSearchText }) {
     return (
         <nav className='bg-white flex justify-between pr-6 pl-6 pt-3 pb-3 border-b border-gray-300 items-center sticky top-0 z-20'>
             <div>
-                <h2>BLOG<em className='not-italic font-bold text-fuchsia-500'>JOURNAL</em></h2>
+                <h2>BLOG<em className='not-italic text-fuchsia-gradient'>JOURNAL</em></h2>
             </div>
             <div className='bg-gray-400 pr-0 w-2/5 flex justify-between rounded-lg'>
                 <div className='overflow-hidden bg-transparent w-full outline-none rounded-lg rounded-br-none rounded-tr-none flex justify-normal'>

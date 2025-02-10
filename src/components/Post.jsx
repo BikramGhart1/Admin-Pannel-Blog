@@ -11,7 +11,7 @@ const Post = React.memo(({ post }) => {
 
             dispatch(deletePost(post));
             alert("Post deleted");
-        }else{
+        } else {
             return;
         }
     }
@@ -33,13 +33,13 @@ const Post = React.memo(({ post }) => {
                 </div>
                 <div className='flex flex-row gap-x-4'>
                     <div className='' onClick={deleteHandler}>
-                        <i className="fa fa-trash  postBadge " aria-hidden="true"></i>
+                        <i className="fa fa-trash  postBadge text-fuchsia-gradient" aria-hidden="true"></i>
                     </div>
-                    <div className='' onClick={()=>{window.open(`/preview/${post.id}`,"_blank")}}>
-                        <i className="fa fa-eye postBadge" aria-hidden="true"></i>
+                    <div className='' onClick={() => { window.open(`/preview/${post.id}`, "_blank") }}>
+                        <i className="fa fa-eye postBadge text-fuchsia-gradient" aria-hidden="true"></i>
                     </div>
                     <Link to="/create" state={{ post }}>
-                        <i className="fas fa-edit postBadge"></i>
+                        <i className="fas fa-edit postBadge text-fuchsia-gradient"></i>
                     </Link>
                 </div>
 
