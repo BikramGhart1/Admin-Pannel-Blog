@@ -2,9 +2,9 @@ import React, { useMemo } from 'react'
 import { useSelector } from 'react-redux';
 
 const Comment = React.memo(({ comment }) => {
-    return <div key={comment.commentId} className='flex flex-row gap-x-24 pt-5'>
-        <div className='min-w-16 rounded-full overflow-hidden'>
-            <img src="https://c.disquscdn.com/uploads/users/35966/8923/avatar92.jpg?1723087776" alt="" />
+    return <div key={comment.commentId} className='flex flex-row md:gap-x-24 gap-x-5 pt-5'>
+        <div className='md:min-w-16 min-w-20 rounded-full overflow-hidden'>
+            <img className='min-w-fit' src="https://c.disquscdn.com/uploads/users/35966/8923/avatar92.jpg?1723087776" alt="" />
         </div>
         <div className='flex flex-col justify-start'>
             <h2><em className='not-italic font-semibold'>Guest</em> Commented on <em className='not-italic font-semibold'>{comment.title}</em></h2>
@@ -37,6 +37,7 @@ function Comments() {
                     <option value="draft">Awaiting Moderation</option>
                 </select>
             </div>
+            
             {
                 allComments.length > 0 ?
                     (allComments.map((comment) => {
