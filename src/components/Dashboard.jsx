@@ -9,7 +9,7 @@ export default function Dashboard() {
   const posts = useSelector((state) => state.posts.posts);
   return (
     <main className='bg-gray-0 flex-1 overflow-y-auto pb-96 p-10'>
-      <div className='flex flex-row gap-x-20'>
+      <div className='flex flex-row md:gap-x-20 gap-x-5'>
         <select name="postCategory" id="postCategory" className='text-gray-800 rounded-lg outline-none p-1 border border-neutral-500'>
           <option value="all">All</option>
           <option value="published">Published</option>
