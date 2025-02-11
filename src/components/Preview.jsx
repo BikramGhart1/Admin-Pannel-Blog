@@ -47,7 +47,7 @@ const Preview = React.memo(() => {
   }
 
   return (
-    <div className='mr-2 ml-2 p-5 border-l-2 border-fuchsia-600 min-h-svh'>
+    <div className='mr-2 ml-2 md:p-5 p-2 border-l-2 border-fuchsia-600 min-h-svh text-sm md:text-lg'>
       <div className=''>
         <Link to='/' className=''>BLOG<em className='not-italic text-fuchsia-gradient'>JOURNAL</em></Link>
         <h2 className='text-center p-4 mb-3 font-semibold border-b bg-neutral-300 text-fuchsia-600 text-xl'>{post.title}</h2>
@@ -74,7 +74,7 @@ const Preview = React.memo(() => {
         </div>
         <div>
           <div className='flex flex-row justify-start gap-x-8 pt-10'>
-            <div className='min-w-20 flex-shrink-0'>
+            <div className='md:max-w-20 max-w-10 flex-shrink-0'>
               <img src="https://c.disquscdn.com/uploads/users/39596/4769/avatar92.jpg?1688811803" className='rounded-full' alt="" />
             </div>
             <div className='flex flex-col'>
@@ -84,7 +84,7 @@ const Preview = React.memo(() => {
             </div>
           </div>
           <div className='flex flex-row justify-start gap-x-8 pt-10'>
-            <div className='min-w-20 flex-shrink-0'>
+            <div className='md:max-w-20 max-w-10 flex-shrink-0'>
               <img src="https://c.disquscdn.com/uploads/users/35966/8923/avatar92.jpg?1723087776" className='rounded-full' alt="" />
             </div>
             <div className='flex flex-col'>
@@ -97,7 +97,7 @@ const Preview = React.memo(() => {
             post.comments.length > 0 &&
             post.comments.map((comment, index) => {
               return <div key={comment.commentId || index} className='flex flex-row justify-start gap-x-8 pt-10'>
-                <div className='min-w-20 flex-shrink-0'>
+                <div className='md:max-w-20 max-w-10 flex-shrink-0'>
                   <img src="https://c.disquscdn.com/uploads/users/35966/8923/avatar92.jpg?1723087776" className='rounded-full' alt="" />
                 </div>
                 <div className='flex flex-col'>
