@@ -27,10 +27,10 @@ const Post = React.memo(({ post }) => {
             <div className=' flex flex-row justify-between '>
                 <div className='flex flex-row justify-start gap-x-3'>
                     <div>
-                        10<i className="fas fa-heart postBadge text-slate-gradient"></i>
+                        {post.likes}<i className="fas fa-heart postBadge text-slate-gradient"></i>
                     </div>
                     <div className='mr-6'>
-                        3<i className="fa fa-comment postBadge text-slate-gradient hover:bg-transparent text-gray-600 cursor-default" aria-hidden="true"></i>
+                        {post.comments.length}<i className="fa fa-comment postBadge text-slate-gradient hover:bg-transparent text-gray-600 cursor-default" aria-hidden="true"></i>
                     </div>
                 </div>
                 <div className='flex flex-row gap-x-4'>
