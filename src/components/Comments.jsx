@@ -62,3 +62,4 @@ export default React.memo(Comments);
 //7. give users temporary name to comment
 //8. moderation tools
 //9. sorting 
+//10. post likes

@@ -1,25 +1,38 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useDispatch } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
-import { addComment } from '../slices/postSlice';
+import { addComment, decrPostLike, incrPostLike } from '../slices/postSlice';
 import { v4 as uuidv4 } from 'uuid';
 
 const Preview = React.memo(() => {
   const { id } = useParams();
   const dispatch = useDispatch();
+  const likeRef = useRef(null);
+
+  const [isLiked, setIsLiked] = useState(false);
   const [comment, setComment] = useState('');
+
   const [post, setPost] = useState({
     title: '',
     blogContent: '',
     comments: [],
+    likes:0,
   });
-  useEffect(() => {
+
+  const fetchFromLocalStorage=()=>{
     const storedPosts = JSON.parse(localStorage.getItem("posts")) || [];
     const foundPost = storedPosts.find((p) => p.id === id);
-    setPost(foundPost);
+    return foundPost;
+  }
+  // useEffect(()=>{
+  //   const foundPost=fetchFromLocalStorage();
+  //   setPost(foundPost);
+  // }, [id])
 
-  }, [id])
+  useEffect(()=>{
+    setPost(fetchFromLocalStorage());
 
+  },[isLiked,post.likes]);
   if (post && post.title) {
     document.title = `Preview - ${post.title}`;
   } else {
@@ -46,6 +59,21 @@ const Preview = React.memo(() => {
     console.log(post);
   }
 
+  const postLikeHandle = () => {
+    setIsLiked((prev) => {
+      const newState = !prev;
+      if (newState) {
+        dispatch(incrPostLike(post));
+      } else {
+        dispatch(decrPostLike(post));
+      }
+      return newState;
+    });
+    // const updatedPost=fetchFromLocalStorage();
+    // setPost(updatedPost);
+    // console.log("Like button from preveiw");
+  }
+
   return (
     <div className='mr-2 ml-2 md:p-5 p-2 border-l-2 border-fuchsia-600 min-h-svh text-sm md:text-lg'>
       <div className=''>
@@ -55,11 +83,28 @@ const Preview = React.memo(() => {
         <div className='border-b border-r border-l rounded-lg border-gray-400 p-5 pb-6'>
           <p>{post.blogContent}</p>
         </div>
+
+        <div className='flex flex-row items-center justify-start gap-x-3 pt-2'>
+          <div className='cursor-pointer  text-fuchsia-500' ref={likeRef} onClick={postLikeHandle}>
+            {
+              (isLiked) ? (
+                <i className="fas fa-heart "></i>
+              ) : (
+                <i className="far fa-heart "></i>
+              )
+            }
+
+
+          </div>
+          <p>{post.likes}</p>
+        </div>
+
       </div>
+
       <div className='mt-8 w-4/5 m-auto'>
         <div className='w-full '>
           <div className='border-b border-neutral-400 mb-5 pb-1 flex flex-row justify-between '>
-            <p >3 Comments</p>
+            <p >{post.comments.length} Comments</p>
             <p>Login</p>
           </div>
           <form onSubmit={submitComment}>
@@ -73,32 +118,12 @@ const Preview = React.memo(() => {
           </form>
         </div>
         <div>
-          <div className='flex flex-row justify-start gap-x-8 pt-10'>
-            <div className='md:max-w-20 max-w-10 flex-shrink-0'>
-              <img src="https://c.disquscdn.com/uploads/users/39596/4769/avatar92.jpg?1688811803" className='rounded-full' alt="" />
-            </div>
-            <div className='flex flex-col'>
-              <p className='font-semibold'>HariYadav</p>
-              <p className='text-sm'>2 years ago</p>
-              <p className='pt-2'>Tf u doin here old zaratul</p>
-            </div>
-          </div>
-          <div className='flex flex-row justify-start gap-x-8 pt-10'>
-            <div className='md:max-w-20 max-w-10 flex-shrink-0'>
-              <img src="https://c.disquscdn.com/uploads/users/35966/8923/avatar92.jpg?1723087776" className='rounded-full' alt="" />
-            </div>
-            <div className='flex flex-col'>
-              <p className='font-semibold'>Hans Bull</p>
-              <p className='text-sm'>a year ago</p>
-              <p className='pt-2'>This is the 1st chapter, and I'm already confused with the comments</p>
-            </div>
-          </div>
           {
             post.comments.length > 0 &&
             post.comments.map((comment, index) => {
               return <div key={comment.commentId || index} className='flex flex-row justify-start gap-x-8 pt-10'>
                 <div className='md:max-w-20 max-w-10 flex-shrink-0'>
-                  <img src="https://c.disquscdn.com/uploads/users/35966/8923/avatar92.jpg?1723087776" className='rounded-full' alt="" />
+                  <img src="https://c.disquscdn.com/uploads/users/39596/4769/avatar92.jpg?1688811803" className='rounded-full' alt="" />
                 </div>
                 <div className='flex flex-col'>
                   <p className='font-semibold'>Guest</p>
@@ -115,3 +140,8 @@ const Preview = React.memo(() => {
 })
 
 export default Preview;
+
+//Things to consider
+//1. isLiked needs to be permanent
+//2. like is being incremented by 2 check where its double
+//3. like button is opposite 

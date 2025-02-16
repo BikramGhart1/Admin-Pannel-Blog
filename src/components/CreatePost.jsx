@@ -14,6 +14,7 @@ const CreatePost = React.memo(() => {
         title: "",
         date: "",
         blogContent: "",
+        // likes:0,
     });
 
     useEffect(() => {
@@ -21,7 +22,9 @@ const CreatePost = React.memo(() => {
             setInputValue({
                 id: location.state.post.id || "",
                 title: location.state.post.title || "",
+                date:location.state.post.date||"",
                 blogContent: location.state.post.blogContent || "",
+                // likes:location.state.post.likes||0,
             });
         }
     }, [location.state]);
@@ -36,6 +39,8 @@ const CreatePost = React.memo(() => {
             title:inputValue.title,
             blogContent:inputValue.blogContent,
             date: inputValue.date||new Date().toISOString(),
+            // likes:inputValue.likes,
+            
         }
         if(inputValue.id){
             dispatch(updatePost(post));

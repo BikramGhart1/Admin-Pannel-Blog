@@ -27,3 +27,7 @@
 .text-fuchsia-gradient{
     @apply bg-gradient-to-r from-fuchsia-400 to-fuchsia-900 bg-clip-text text-transparent font-bold
 }
+
+.text-slate-gradient{
+    @apply bg-gradient-to-r from-slate-300 to-slate-600 bg-clip-text text-transparent
+}
