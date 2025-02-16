@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { calcuateTotalLikes } from "../utils/util";
 
 const loadPostFromStorage = () => {
     const storedPosts = localStorage.getItem("posts");
@@ -9,11 +10,15 @@ const saveToLocalStorage = (posts) => {
 }
 const postSlice = createSlice({
     name: "posts",
-    initialState: { posts: loadPostFromStorage() },
+    initialState: { 
+        posts: loadPostFromStorage(),
+        totalLikes:0,
+     },
     reducers: {
         addPost: (state, action) => {
             state.posts.push({ ...action.payload, comments: [], likes: 0, });
             saveToLocalStorage(state.posts);
+            state.totalLikes=calcuateTotalLikes(state.posts);
 
         },
         updatePost: (state, action) => {
@@ -22,10 +27,12 @@ const postSlice = createSlice({
                 state.posts[postIndex] = { ...action.payload, comments: state.posts[postIndex].comments, };
             }
             saveToLocalStorage(state.posts);
+            state.totalLikes=calcuateTotalLikes(state.posts);
         },
         deletePost: (state, action) => {
             state.posts = state.posts.filter(p => p.id !== action.payload.id);
             saveToLocalStorage(state.posts);
+            state.totalLikes=calcuateTotalLikes(state.posts);
         }, incrPostLike: (state, action) => {
             // const post = state.posts.find((post) => post.id === action.payload.id);
             // console.log('incr clicked');
@@ -36,6 +43,8 @@ const postSlice = createSlice({
             }
             saveToLocalStorage(state.posts);
             console.log("Like button from Reducer");
+            
+            state.totalLikes=calcuateTotalLikes(state.posts);
 
         }, decrPostLike: (state, action) => {
             const postIndex = state.posts.findIndex(post => post.id === action.payload.id);
@@ -43,6 +52,7 @@ const postSlice = createSlice({
                 state.posts[postIndex].likes -= 1;
             }
             saveToLocalStorage(state.posts);
+            state.totalLikes=calcuateTotalLikes(state.posts);
 
         },
         addComment: (state, action) => {
@@ -71,10 +81,14 @@ const postSlice = createSlice({
                 post.comments = post.comments.filter(comment => comment.commentId !== commentId);
             }
             saveToLocalStorage(state.posts);
+        },calcuateLikes:(state)=>{
+            state.totalLikes=calcuateTotalLikes(state.posts);
+            // return totalLikes;
+            
         }
     }
 })
 
-export const { addPost, updatePost, deletePost, incrPostLike, decrPostLike, addComment, updateComment, deleteComment } = postSlice.actions;
+export const { addPost, updatePost, deletePost, incrPostLike, decrPostLike, addComment, updateComment, deleteComment, calcuateLikes } = postSlice.actions;
 
 export default postSlice.reducer;

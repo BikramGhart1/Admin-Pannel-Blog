@@ -1,4 +1,5 @@
 import React, { useRef, useState } from 'react'
+import { Link } from 'react-router-dom';
 
 export default function Navbar({ getSearchText }) {
     const [searchText, setSearchText] = useState('');
@@ -26,9 +27,9 @@ export default function Navbar({ getSearchText }) {
                     <i className="fas fa-search"></i>
                 </button>
             </div>
-            <div>
+            <Link to='/profile'>
                 <img className='w-12 rounded-full border-2 hover:rotate-6 cursor-pointer' src="https://static.vecteezy.com/system/resources/thumbnails/020/765/399/small_2x/default-profile-account-unknown-icon-black-silhouette-free-vector.jpg" alt="pfp" />
-            </div>
+            </Link>
         </nav>
     )
 }
