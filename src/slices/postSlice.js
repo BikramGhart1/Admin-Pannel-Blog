@@ -68,7 +68,7 @@ const postSlice = createSlice({
             const { id, commentId } = action.payload;
             const post = state.posts.find(p => p.id === id);
             if (post) {
-                post.comments = post.comments.filter(comment => comment.id !== commentId);
+                post.comments = post.comments.filter(comment => comment.commentId !== commentId);
             }
             saveToLocalStorage(state.posts);
         }
