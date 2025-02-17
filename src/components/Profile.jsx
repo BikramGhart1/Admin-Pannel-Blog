@@ -4,6 +4,10 @@ import { calcuateLikes } from '../slices/postSlice';
 
 export default function Profile() {
     const [isEditMode, setIsEditMode] = useState(false)
+    const [inputValue,setInputValue]=useState({
+        userName:'Username',
+        bio:'Bio'
+    });
     const posts = useSelector((states) => states.posts.posts);
     const totalLikes = useSelector((state) => state.posts.totalLikes)
     const dispatch = useDispatch();
@@ -15,9 +19,18 @@ export default function Profile() {
     const editHandler = () => {
         setIsEditMode(!isEditMode);
     }
+    const onChangeHandler=(e)=>{
+       const {name,value}=e.target;
+       setInputValue((prev)=>({...prev,[name]:value}))
+
+    }
+    const saveForm=(e)=>{
+       e.preventDefault();
+       setIsEditMode(false);
+    }
     return (
         <div className='p-5'>
-            <form className='flex flex-row justify-start items-start gap-x-7 md:gap-x-14 w-full'>
+            <form className='flex flex-row justify-start items-start gap-x-7 md:gap-x-14 w-full' onSubmit={saveForm}>
                 <div>
                     <img className='rounded-full' src="https://c.disquscdn.com/uploads/users/35966/8923/avatar92.jpg?1723087776" alt="pfp" />
                 </div>
@@ -30,16 +43,16 @@ export default function Profile() {
                     </div>
                     <div className='flex flex-col gap-y-4'>
                         {isEditMode ?
-                            (<input className='border border-neutral-500 p-1 rounded-md' type='text' placeholder='Username' />)
+                            (<input className='border border-neutral-500 p-1 rounded-md outline-none' name='userName' value={inputValue.userName} onChange={onChangeHandler} type='text' placeholder='Username' />)
                             :
-                            (<p className='font-semibold'>Username</p>)
+                            (<p className='font-semibold'>{inputValue.userName}</p>)
                         }
                         {
                             isEditMode ? (
-                                <textarea className='border border-neutral-500 p-1 rounded-md min-h-10'></textarea>
+                                <textarea name='bio' value={inputValue.bio} className='outline-none border border-neutral-500 p-1 rounded-md min-h-10' onChange={onChangeHandler}></textarea>
                             ) : (
 
-                                <p>Bio</p>
+                                <p>{inputValue.bio}</p>
                             )
                         }
                     </div>
